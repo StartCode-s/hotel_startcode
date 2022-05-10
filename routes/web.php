@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{KamarController,OrderController};
+use App\Http\Controllers\{KamarController,OrderController,TipeController};
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,26 +24,35 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-
-
 Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+
     Route::prefix('kamar')->name('kamar.')->group(function () {
-    // crud routing
-    Route::get('/', 'KamarController@index')->name('index');
-    Route::get('/create', 'KamarController@create')->name('create');
-    Route::post('/store', 'KamarController@store')->name('store');
-    Route::get('/{id}/edit', 'KamarController@edit')->name('edit');
-    Route::post('/{id}/update', 'KamarController@update')->name('update');
-    Route::get('/{id}/delete', 'KamarController@destroy')->name('delete');
+        Route::get('/', 'KamarController@index')->name('index');
+        Route::get('/create', 'KamarController@create')->name('create');
+        Route::post('/store', 'KamarController@store')->name('store');
+        Route::get('/{id}/edit', 'KamarController@edit')->name('edit');
+        Route::post('/{id}/update', 'KamarController@update')->name('update');
+        Route::get('/{id}/delete', 'KamarController@destroy')->name('delete');
     });
 
     Route::prefix('order')->name('order.')->group(function () {
-        // crud routing
         Route::get('/', 'OrderController@index')->name('index');
         Route::get('/create', 'OrderController@create')->name('create');
         Route::post('/store', 'OrderController@store')->name('store');
         Route::get('/{id}/edit', 'OrderController@edit')->name('edit');
         Route::post('/{id}/update', 'OrderController@update')->name('update');
         Route::get('/{id}/delete', 'OrderController@destroy')->name('delete');
-        });
+    });
+
+    Route::prefix('tipe')->name('tipe.')->group(function () {
+        Route::get('/', 'TipeController@index')->name('index');
+        Route::get('/create', 'TipeController@create')->name('create');
+        Route::post('/store', 'TipeController@store')->name('store');
+        Route::get('/{id}/edit', 'TipeController@edit')->name('edit');
+        Route::post('/{id}/update', 'TipeController@update')->name('update');
+        Route::get('/{id}/delete', 'TipeController@destroy')->name('delete');
+    });
 });

@@ -1,7 +1,5 @@
 @extends('layouts.base')
 
-
-
 @section('menu')
 <div class="sidebar-menu-wrapper">
     <li class="listMenuName">
@@ -18,7 +16,7 @@
         <div class="icon">
             <ion-icon name="grid"></ion-icon>
         </div>
-        <a href="/admin/kamar" class="sidebar-menu">Order</a>
+        <a href="/admin/kamar" class="sidebar-menu">Kamar</a>
     </li>
 
     <li class="list-menu ">
@@ -41,55 +39,39 @@
 
 @section('content')
     <div class="contentMain">
-        <h2 class="pageNameContent">Order List</h2>
+        <h2 class="pageNameContent">Tipe List</h2>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Order List</li>
+            <li class="breadcrumb-item active">Tipe List</li>
         </ol>
 
         <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                Add Order
+                Add Tipe
             </button>
         </div>
-
         <div class="wrapperTable table-responsive">
             <table id="countryList" class="tables" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>User Id</th>
-
-                        <th>Check In</th>
-                        <th>Check Out</th>
-                        <th>Kamar ID</th>
-                        <th>Status</th>
+                        <th>Nama</th>
                         <th>Action</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-
-
-                            <td>{{ $item->user_id }}</td>
-                            <td>{{ $item->check_in }}</td>
-                            <td>{{ $item->check_out }}</td>
-                            <td>{{ DB::table('kamar')->where('id', $item->kamar_id)->first()->nama }}</td>
-                            <td>{{ $item->status }}</td>
-
+                            <td>{{ $item->nama }}</td>
                             <td>
                                 <div class="buttonAction">
                                     <button type="button" data-id="{{ $item->id }}" data-bs-toggle="modal"
                                         data-bs-target="#updateTanaman" class="buttons success text-white me-2"
-                                        data-tipe="{{ $item->tipe }}">
-
+                                        data-nama="{{ $item->nama }}">
                                         <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
                                             alt="">
                                     </button>
-
                                     <a href="{{ route('admin.kamar.delete', ['id' => $item->id]) }}"
                                         class="buttons danger text-white">
                                         <img width="20" height="20" src="{{ url('assets/img/trash-outline 1.svg') }}"
@@ -102,8 +84,6 @@
                 </tbody>
             </table>
         </div>
-
-
     </div>
 
 
@@ -115,36 +95,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add Order List</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Tipe List</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.kamar.store') }}" method="post">
+                <form action="{{ route('admin.tipe.store') }}" method="post">
                     @csrf
                     <div class="modal-body">
-
-
                         <div class="form-group mb-3">
-                            <label class="form-label" for="tipe">Tipe</label>
-                            <input type="text" class="form-control" name="tipe" id="tipe">
+                            <label class="form-label" for="nama">Nama</label>
+                            <input type="text" class="form-control" name="nama" id="nama">
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label class="form-label" for="harga">Harga</label>
-                            <input type="text" class="form-control" name="harga" id="harga">
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label class="form-label" for="max">Max</label>
-                            <input type="text" class="form-control" name="max" id="max">
-                        </div>
-
-
-                        <div class="form-group mb-3">
-                            <label class="form-label" for="status">Status</label>
-                            <input type="text" class="form-control" name="status" id="status">
-                        </div>
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -185,19 +145,16 @@
 
             var html = `
     <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Order List</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit tipe List</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/admin/editOrder/${$(e.relatedTarget).data('id')}" method="post">
+            <form action="/admin/tipe/${$(e.relatedTarget).data('id')}/update" method="post">
                 @csrf
                 <div class="modal-body">
+
                     <div class="form-group mb-3">
-                        <label class="form-label" for="Count / QTY">Count / QTY</label>
-                        <input type="number" class="form-control" name="count" id="count" value="${$(e.relatedTarget).data('count')}">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="Value">Value</label>
-                        <input type="number" class="form-control" name="value" value="${$(e.relatedTarget).data('value')}" id="value" >
+                        <label class="form-label" for="nama">Nama</label>
+                        <input type="text" class="form-control" name="nama" value="${$(e.relatedTarget).data('nama')}" id="nama">
                     </div>
                 </div>
                 <div class="modal-footer">

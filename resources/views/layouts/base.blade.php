@@ -134,14 +134,22 @@
 
 
 
-            @if (Session::has('message'))
-                <br>
-
+            @if (session('status'))
+            <br>
                 <div class="alert alert-{{ session('status') }}">
                     {{ session('message') }}
                 </div>
             @endif
-
+            @if ($errors->any())
+            <br>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('content')
         </div>
     </div>

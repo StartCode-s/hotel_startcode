@@ -39,29 +39,48 @@ class KamarController extends Controller
     {
 
         $this->validate($request, [
-            'tipe' => 'required',
+            'tipe_id' => 'required',
+            'nama' => 'required',
             'harga' => 'required',
-            'fasilitas' => 'required',
-            'max' => 'required',
-            'status' => 'required',
-            'thumb' => 'required',
+            'jumlah_kamar' =>'required',
+            'jumlah_kamar_mandi' =>'required',
+            'fasilitas' =>'required',
+            'max' =>'required',
+
         ]);
 
 
-    $file = $request->file('gambar');
-    $thumbname = time() . '-' . $file->getClientOriginalName();
-    $file->move(public_path() . '/thumbkamar' . '/', $thumbname);
+        if ($request->hasFile('thumb')) {
+            $file = $request->file('thumb');
+            $thumbname = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path() . '/thumbkamar' . '/', $thumbname);
 
         Kamar::create([
-            'tipe' => $request->tipe,
+            'tipe_id' => $request->tipe_id,
+            'nama' => $request->nama,
             'harga' => $request->harga,
+            'jumlah_kamar' => $request->jumlah_kamar,
+            'jumlah_kamar_mandi' => $request->jumlah_kamar_mandi,
             'fasilitas' => $request->fasilitas,
             'max' => $request->max,
-            'status' => $request->status,
-            'thumb' => $request->thumb,
-        ]);
 
-        return redirect()->route('kamar.index')->with(['message'=>'Kamar berhasil di tambah !','status'=>'success']);
+            'thumb' => $thumbname,
+        ]);
+        }else {
+            Kamar::create([
+                'tipe_id' => $request->tipe_id,
+                'nama' => $request->nama,
+                'harga' => $request->harga,
+                'jumlah_kamar' => $request->jumlah_kamar,
+                'jumlah_kamar_mandi' => $request->jumlah_kamar_mandi,
+                'fasilitas' => $request->fasilitas,
+
+                'max' => $request->max,
+            ]);
+        }
+
+
+        return redirect()->route('admin.kamar.index')->with(['message'=>'Kamar berhasil di tambah !','status'=>'success']);
     }
 
     /**
@@ -134,7 +153,7 @@ class KamarController extends Controller
         }
 
 
-        return redirect()->route('kamar.index')->with(['message'=>'Kamar Berhasil di Update!','status'=>'warning']);
+        return redirect()->route('admin.kamar.index')->with(['message'=>'Kamar Berhasil di Update!','status'=>'warning']);
     }
 
     /**
@@ -147,6 +166,6 @@ class KamarController extends Controller
     {
 
         kamar::destroy($id);
-        return redirect()->route('kamar.index')->with(['message'=>'kAMAR Berhasil di delete','status'=>'danger']);
+        return redirect()->route('admin.kamar.index')->with(['message'=>'Kamar Berhasil di delete','status'=>'danger']);
     }
 }

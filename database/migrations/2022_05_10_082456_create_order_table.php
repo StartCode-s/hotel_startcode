@@ -17,7 +17,6 @@ class CreateOrderTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('guest_name');
             $table->date('check_in');
             $table->date('check_out');
             $table->string('total_harga');

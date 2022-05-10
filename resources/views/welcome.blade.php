@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,25 +15,26 @@
     <!--Home css-->
     <link rel="stylesheet" href="{{ url('assets-user/css/home.css') }}">
 </head>
+
 <body>
 
     <div id="home">
         <!-- <nav class="navbar navbar-light bg-light">
             <div class="container">
-              <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="#">
                 <img src="{{ url('assets-user/images/brand-logo.png') }}" alt="">
                 Startcode Hotel
-              </a>
+                </a>
             </div>
         </nav> -->
 
         <div class="home-content">
             <div class="container">
                 <div class="row d-flex align-items-center">
-                    <div class="col-7">
+                    <div class="col-12 col-lg-7 mb-5 mb-lg-0">
                         <h1 class="text-home">Find Your Awesome Room</h1>
                     </div>
-                    <div class="col-5">
+                    <div class="col-12 col-lg-5">
                         <div class="card">
                             <div class="head-card">
                                 <h5>Booking Rooms</h5>
@@ -52,34 +54,56 @@
                                             <input type="date" name="" id="checkout" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-input">
-                                            <label for="roomValue" class="form-label">Room Value</label>
-                                            <input type="number" name="" id="roomValue" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="form-input">
                                             <label for="roomType" class="form-label">Room Type</label>
                                             <select class="form-select" name="" id="roomType">
-                                                <option value="1">Select Room Type</option>
+                                                <option value="" selected>Select All Type Room</option>
+                                                @foreach (DB::table('tipe_kamar')->get() as $item)
+
+                                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="valueAdult" class="form-label">Adult</label>
-                                            <input type="number" name="" id="valueAdult" class="form-control">
+                                            <select class="form-select" name="" id="valueAdult">
+                                                <option value="" selected>Select Count</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="childvalue" class="form-label">Children</label>
-                                            <input type="number" name="" id="childvalue" class="form-control">
+                                            <select class="form-select" name="" id="childvalue">
+                                                <option value="" selected>Select Count</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2">
-                                        <button class="button button-primary w-100">Book Now</button>
+                                        <button class="button button-primary w-100">Search Now</button>
                                     </div>
                                 </div>
                             </form>
@@ -102,4 +126,5 @@
     <script src="{{ url('assets-user/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('assets-user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
+
 </html>

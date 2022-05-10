@@ -1,6 +1,11 @@
 @extends('layouts.base')
 
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css"
+        integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+@endsection
 
 @section('menu')
     <div class="sidebar-menu-wrapper">
@@ -28,11 +33,27 @@
             <a href="/admin/order" class="sidebar-menu">Order</a>
         </li>
 
+        <li class="list-menu ">
+            <div class="icon">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <a href="/admin/tipe" class="sidebar-menu">Tipe</a>
+        </li>
+
 
     </div>
 @endsection
 
 @section('content')
+    <style>
+        .dropify-wrapper .dropify-message p {
+            font-size: 14px;
+        }
+
+    </style>
+
+
+
     <div class="contentMain">
         <h2 class="pageNameContent">Kamar List</h2>
         <ol class="breadcrumb">
@@ -51,6 +72,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Nama</th>
                         <th>Tipe</th>
                         <th>Harga</th>
                         <th>Fasilitas</th>
@@ -62,31 +84,33 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $key => $item)
-
                         <tr>
                             <td>{{ $key + 1 }}</td>
 
 
-                            <td>{{ $item->tipe }}</td>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->tipe_id }}</td>
                             <td>{{ $item->harga }}</td>
                             <td>{{ $item->fasilitas }}</td>
                             <td>{{ $item->max }}</td>
                             <td>{{ $item->status }}</td>
 
                             <td>
-                            <div class="buttonAction">
-                                <button type="button" data-id="{{ $item->id }}" data-bs-toggle="modal"
-                                    data-bs-target="#updateTanaman" class="buttons success text-white me-2"
-                                    data-tipe="{{ $item->tipe }}">
+                                <div class="buttonAction">
+                                    <button type="button" data-id="{{ $item->id }}" data-bs-toggle="modal"
+                                        data-bs-target="#updateTanaman" class="buttons success text-white me-2"
+                                        data-tipe="{{ $item->tipe }}">
 
-                                    <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}" alt="">
-                                </button>
+                                        <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
+                                            alt="">
+                                    </button>
 
-                                <a href="{{ route('admin.kamar.delete', ['id' => $item->id]) }}"
-                                    class="buttons danger text-white">
-                                    <img width="20" height="20" src="{{ url('assets/img/trash-outline 1.svg') }}" alt="">
-                                </a>
-                            </div>
+                                    <a href="{{ route('admin.kamar.delete', ['id' => $item->id]) }}"
+                                        class="buttons danger text-white">
+                                        <img width="20" height="20" src="{{ url('assets/img/trash-outline 1.svg') }}"
+                                            alt="">
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -109,31 +133,60 @@
                     <h5 class="modal-title" id="staticBackdropLabel">Add Kamar List</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('admin.kamar.store') }}" method="post">
+                <form action="{{ route('admin.kamar.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
 
 
                         <div class="form-group mb-3">
-                            <label class="form-label" for="tipe">Tipe</label>
-                            <input type="text" class="form-control" name="tipe" id="tipe">
+                            <label for="roomType" class="form-label">Room Type</label>
+                            <select class="form-select" name="tipe_id" id="roomType">
+                                <option value="" selected>Select All Type Room</option>
+                                @foreach (DB::table('tipe_kamar')->get() as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="nama">Nama</label>
+                            <input type="text" class="form-control" name="nama" id="nama">
                         </div>
 
                         <div class="form-group mb-3">
                             <label class="form-label" for="harga">Harga</label>
-                            <input type="text" class="form-control" name="harga" id="harga">
+                            <input type="number" class="form-control" name="harga" id="harga">
                         </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="jumlah_kamar">Jummlah Kamar</label>
+                            <input type="number" class="form-control" name="jumlah_kamar" id="jumlah_kamar">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="jumlah_kamar_mandi">Jumlah Kamar Mandi</label>
+                            <input type="number" class="form-control" name="jumlah_kamar_mandi" id="jumlah_kamar_mandi">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="fasilitas" class="form-label">Fasilitas</label>
+                            <textarea class="form-control" id="fasilitas" name="fasilitas" rows="3"></textarea>
+                        </div>
+
+
 
                         <div class="form-group mb-3">
                             <label class="form-label" for="max">Max</label>
-                            <input type="text" class="form-control" name="max" id="max">
+                            <input type="number" class="form-control" name="max" id="max">
                         </div>
-
 
                         <div class="form-group mb-3">
-                            <label class="form-label" for="status">Status</label>
-                            <input type="text" class="form-control" name="status" id="status">
+                            <label class="form-label" for="max">Thumb</label>
+                            <input type="file" name="thumb" class="dropify"  />
                         </div>
+
+
+
+
 
 
                     </div>
@@ -167,9 +220,6 @@
                 "bSort": false,
             });
         });
-
-
-
     </script>
 
 
@@ -204,5 +254,13 @@
             $('#modal-content').html(html);
 
         })
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
+        integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('.dropify').dropify();
     </script>
 @endsection

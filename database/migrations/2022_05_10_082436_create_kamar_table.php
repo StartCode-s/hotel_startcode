@@ -15,13 +15,20 @@ class CreateKamarTable extends Migration
     {
         Schema::create('kamar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tipe');
-            $table->string('name');
+            $table->unsignedBigInteger('tipe_id');
+            $table->string('nama');
             $table->string('harga');
-            $table->string('fasilitas');
-            $table->string('jumlah');
+            $table->string('jumlah_kamar');
+            $table->string('jumlah_kamar_mandi');
+
+            $table->text('fasilitas');
             $table->integer('max');
             $table->enum('status', [0, 1])->comment('available', 'booked')->default(1);
+            $table->text('thumb');
+
+
+            $table->foreign('tipe_id')->references('id')->on('tipe_kamar')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
