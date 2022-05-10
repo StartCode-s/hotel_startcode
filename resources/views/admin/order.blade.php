@@ -18,7 +18,7 @@
         <div class="icon">
             <ion-icon name="grid"></ion-icon>
         </div>
-        <a href="/admin/kamar" class="sidebar-menu">Order</a>
+        <a href="/admin/kamar" class="sidebar-menu">Kamar</a>
     </li>
 
     <li class="list-menu ">
