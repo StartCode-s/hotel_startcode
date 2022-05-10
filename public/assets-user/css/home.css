@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+*, ::before, ::after, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#home {
+  background: url(../images/background.jpg);
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+
+#home .home-content {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#home .home-content .text-home {
+  color: #fff;
+  font-weight: 700;
+  font-size: 68px;
+}
+
+#home .home-content .card {
+  padding: 2.8rem 2.5rem;
+  border-radius: 12px;
+  border: none;
+}
+
+#home .home-content .card .head-card {
+  margin-bottom: 2rem;
+}
+
+#home .home-content .card .head-card h5 {
+  font-weight: 600;
+  color: #112B3C;
+  margin-bottom: 4px;
+}
+
+#home .home-content .card .head-card p {
+  color: #9b9494;
+  font-size: 12px;
+}
+
+#home .home-content .card .form-input {
+  margin-bottom: 1rem;
+}
+
+#home .home-content .card .form-input .form-label {
+  color: #9b9494;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+#home .home-content .card .form-input .form-control, #home .home-content .card .form-input .form-select {
+  border: 1px solid #38694B;
+  color: #38694B;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: .5rem .5rem;
+}
+
+#home .home-content .card .form-input .form-control:focus, #home .home-content .card .form-input .form-select:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+#home .home-content .card .sign-account p {
+  text-align: center;
+  color: #9b9494;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+#home .home-content .card .sign-account .d-flex a {
+  text-decoration: none;
+  color: #38694B;
+  font-weight: 600;
+  font-size: 14px;
+}
+/*# sourceMappingURL=home.css.map */
