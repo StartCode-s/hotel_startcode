@@ -18,29 +18,24 @@
             </div>
             <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
         </li>
-
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin/kamar" class="sidebar-menu">Kamar</a>
         </li>
-
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin/order" class="sidebar-menu">Order</a>
         </li>
-
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin/tipe" class="sidebar-menu">Tipe</a>
         </li>
-
-
     </div>
 @endsection
 
@@ -49,16 +44,11 @@
         .dropify-wrapper .dropify-message p {
             font-size: 14px;
         }
-
     </style>
 
 
-
     <div class="contentMain">
-        
-
         <center>
-
             <h1>Admin Page</h1>
         </center>
     </div>
@@ -66,5 +56,4 @@
 
 
 @section('js')
-
 @endsection

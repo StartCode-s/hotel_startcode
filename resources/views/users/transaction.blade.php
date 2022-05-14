@@ -10,29 +10,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Transaction</title>
 </head>
 
 <body>
+    <center><h1>Transaction History</h1></center>
     <br>
     <br>
     <div class="container">
-        @foreach (DB::table('order')->where('user_id', Auth::id())->get()
+        <center>
+            @foreach (DB::table('order')->where('user_id', Auth::id())->get()
     as $item)
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $item->order_code }}</h5>
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ route('pay', ['code' => $item->order_code]) }}" type="submit"
-                                    class="btn btn-success"> Pay</a>
+                <div class="card mb-3" style="max-width: 80%;">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $item->order_code }}</h5>
+                                <div class="d-flex justify-content-end">
+                                    @if (is_null($item->transaction_id))
+                                        <a href="{{ route('pay', ['code' => $item->order_code]) }}" type="submit"
+                                            class="btn btn-success"> Pay</a>
+                                    @else
+                                        <a class="btn btn-info"
+                                            href="{{ route('transaction-invoice', ['code' => $item->order_code]) }}">Invoice</a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </center>
     </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

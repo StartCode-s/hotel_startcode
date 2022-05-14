@@ -49,6 +49,21 @@ class BookingController extends Controller
     }
 
 
+    public function updateTransaction(Request $request)
+    {
+        Order::where('id',$request['id'])->update([
+            'payment_status' => $request['result']['status_code'] . ' | '.$request['result']['status_message'],
+            'payment_method' => $request['result']['bank'].' | '.$request['result']['payment_type'],
+            'transaction_id' => $request['result']['transaction_id'],
+            'transaction_time' => $request['result']['transaction_time'],
+            'guest_name' => $request['guests'],
+            'status' => '1',
+        ]);
+
+        return response()->json(['statusCode'=>200,'message'=>'Success Update Transaction !','status'=>'success'], 200);
+    }
+
+
     public function transaction(Request $request)
     {
         return view('users.transaction');
@@ -65,9 +80,7 @@ class BookingController extends Controller
             $snapToken = $midtrans->getSnapToken();
             $order->snap_token = $snapToken;
             $order->save();
-
         }
-
         $data = $order;
         return view('users.checkout', compact('order', 'snapToken','data'));
 
@@ -93,9 +106,30 @@ class BookingController extends Controller
 
     }
 
-    public function invoice($id)
+    public function invoice($code)
     {
-        $data = Order::where('id',$id)->first();
-        dd($data);
+        $data = Order::where('order_code',$code)->first();
+        return view('users.invoice', compact('data'));
     }
+
+    public function transactionSuccess()
+    {
+        return view('users.transaction-success');
+    }
+
+    public function transactionError()
+    {
+        return view('users.transaction-error');
+    }
+    public function transactionPending()
+    {
+        return view('users.transaction-pending');
+    }
+
+    public function transactionInvoice($code)
+    {
+        $data = Order::where('order_code',$code)->first();
+        return view('users.transaction-invoice', compact('data'));
+    }
+
 }

@@ -46,13 +46,15 @@
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="checkin" class="form-label">Check-in</label>
-                                            <input type="date" name="check_in" id="checkin" min="{{date('Y-m-d')}}" class="form-control" onchange="updatedate();" required>
+                                            <input type="date" name="check_in" id="checkin" min="{{ date('Y-m-d') }}"
+                                                class="form-control" onchange="updatedate();" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="checkout" class="form-label">Check-out</label>
-                                            <input type="date" name="check_out" id="checkout" min="{{date('Y-m-d')}}" class="form-control" required>
+                                            <input type="date" name="check_out" id="checkout" min="{{ date('Y-m-d') }}"
+                                                class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -108,13 +110,15 @@
                                 </div>
                             </form>
 
-                            <div class="sign-account mt-4">
-                                <p>Want to login or register account ?</p>
-                                <div class="d-flex justify-content-center">
-                                    <a href="{{ route('login') }}" class="me-2">Login</a>
-                                    <a href="{{ route('register') }}">Register</a>
+                            @if (!Auth::check())
+                                <div class="sign-account mt-4">
+                                    <p>Want to login or register account ?</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="{{ route('login') }}" class="me-2">Login</a>
+                                        <a href="{{ route('register') }}">Register</a>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

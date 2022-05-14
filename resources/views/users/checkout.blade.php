@@ -9,7 +9,7 @@
 
     <!--Botstrap Assets-->
     <link rel="stylesheet" href="{{ url('assets-user/vendor/bootstrap/css/bootstrap.min.css') }}">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--Public css-->
     <link rel="stylesheet" href="{{ url('assets-user/css/app.css') }}">
     <!--form order css css-->
@@ -45,11 +45,11 @@
                 </div>
                 <div class="sidebar-menu">
                     <p class="text-menu">User Menu</p>
-                    <a href="#" class="sidebar-link">
+                    <a href="/" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/booking.png') }}" alt="">
                         Booking Room
                     </a>
-                    <a href="#" class="sidebar-link">
+                    <a href="/transaction" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/calendar.png') }}" alt="">
                         History
                     </a>
@@ -100,22 +100,23 @@
                     <div class="form-container">
                         <h5>Guest Detail</h5>
                         <div class="row">
-                                <div class="col-6">
-                                    <form action="">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-input">
-                                                    <label for="nameguest" class="form-label">Name Guest</label>
-                                                    <input type="text" name="" id="nameguest" class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-12">
-                                                <button id="pay-button" class="button button-primary">Pay Now</button>
+                            <div class="col-6">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-input">
+                                                <label for="nameguest" class="form-label">Name Guest</label>
+                                                <input type="text" name="guests" id="guests" class="form-control">
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+
+                                        <div class="col-12">
+                                            <button id="pay-button" class="button button-primary" disabled>Pay
+                                                Now</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -132,13 +133,18 @@
     <!--Ion Icon-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url('assets-user/js/index.js') }}"></script>
 
 
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
     </script>
     <script>
+        $('#guests').on('input', function(e) {
+            $('#pay-button').attr('disabled', !$(this).val());
+        });
+
+
         const payButton = document.querySelector('#pay-button');
         payButton.addEventListener('click', function(e) {
             e.preventDefault();
@@ -146,21 +152,90 @@
             snap.pay('{{ $snapToken }}', {
                 // Optional
                 onSuccess: function(result) {
-                    /* You may add your own js here, this is just example */
-                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
+                    console.log(result);
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/update-transaction",
+                        method: "POST",
+                        data: {
+                            status: 'Success',
+                            id: '{{ $data->id }}',
+                            guests: $('#guests').val(),
+                            result: result
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Good Job !',
+                                text: 'Your Transaction has been Success',
+
+                            })
+                        }
+                    });
                 },
                 // Optional
                 onPending: function(result) {
                     /* You may add your own js here, this is just example */
                     // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
+                    console.log(result);
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/update-transaction",
+                        method: "POST",
+                        data: {
+                            status: 'Pending',
+                            id: '{{ $data->id }}',
+                            guests: $('#guests').val(),
+                            result: result
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                icon: 'question',
+                                title: 'Oops...',
+                                text: 'Something Your Transaction is Pending',
+                            })
+                        }
+                    });
                 },
                 // Optional
                 onError: function(result) {
                     /* You may add your own js here, this is just example */
                     // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-                    console.log(result)
+                    console.log(result);
+
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        url: "/update-transaction",
+                        method: "POST",
+                        data: {
+                            status: 'Error',
+                            id: '{{ $data->id }}',
+                            guests: $('#guests').val(),
+                            result: result
+                        },
+                        success: function(data) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Something went wrong!',
+
+                            })
+                        }
+                    });
                 }
             });
         });

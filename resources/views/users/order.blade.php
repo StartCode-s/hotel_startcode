@@ -46,11 +46,11 @@
                 </div>
                 <div class="sidebar-menu">
                     <p class="text-menu">User Menu</p>
-                    <a href="#" class="sidebar-link">
+                    <a href="/" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/booking.png') }}" alt="">
                         Booking Room
                     </a>
-                    <a href="#" class="sidebar-link">
+                    <a href="/transaction" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/calendar.png') }}" alt="">
                         History
                     </a>
@@ -87,8 +87,8 @@
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="checkout" class="form-label">Check-out</label>
-                                            <input type="date" name="check_out" id="checkout" min="{{ date('Y-m-d') }}"
-                                                class="form-control" required>
+                                            <input type="date" name="check_out" id="checkout"
+                                                min="{{ date('Y-m-d') }}" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -153,14 +153,14 @@
                                     <div class="col-4">
                                         <a href="#" class="card card-items">
                                             <div class="image-room">
-                                                <img src="{{ url('thumbKamar/'.$item->thumb) }}" alt="">
+                                                <img src="{{ url('thumbkamar/' . $item->thumb) }}" alt="">
                                             </div>
                                             <div class="detail-room">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <h5 class="name-room">{{ $item->nama }}</h5>
                                                     <div class="rating">
                                                         <ion-icon name="star"></ion-icon>
-                                                        4.5
+                                                        {{$item->rate}}
                                                     </div>
                                                 </div>
                                                 <div class="d-flex price">

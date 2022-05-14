@@ -5,6 +5,7 @@ namespace App\Services\Midtrans;
 use Midtrans\Snap;
 use App\Models\{Order,Kamar,User};
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 class CreateSnapTokenService extends Midtrans
 {
     protected $order;
@@ -23,7 +24,7 @@ class CreateSnapTokenService extends Midtrans
 
         $params = [
             'transaction_details' => [
-                'order_id' => 1,
+                'order_id' => $this->order->id.Carbon::now()->timestamp,
                 'gross_amount' => $this->order->total_harga,
             ],
             'item_details' => [

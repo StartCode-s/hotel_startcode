@@ -61,7 +61,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/checkout', 'BookingController@checkout')->name('checkout');
     Route::get('/pay/{code}', 'BookingController@pay')->name('pay');
+    Route::post('/update-transaction', 'BookingController@updateTransaction')->name('update-transaction');
     Route::get('/transaction', 'BookingController@transaction')->name('transaction');
+    Route::get('/transaction-invoice/{code}', 'BookingController@transactionInvoice')->name('transaction-invoice');
+    Route::get('/transaction-success', 'BookingController@transactionSuccess')->name('transaction-success');
+    Route::get('/transaction-pending', 'BookingController@transactionPending')->name('transaction-pending');
+    Route::get('/transaction-error', 'BookingController@transactionError')->name('transaction-error');
 });
 Route::post('/order', 'BookingController@order')->name('order');
 Route::post('/checkout-non-register', 'BookingController@checkoutNonRegister')->name('checkout-non-register');
