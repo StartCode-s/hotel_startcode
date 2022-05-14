@@ -1,0 +1,87 @@
+.explore-typeroom .banner-images img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-height: 500px;
+  -o-object-position: bottom;
+     object-position: bottom;
+}
+
+.explore-typeroom .result-search .card {
+  padding: 1.5rem;
+}
+
+.explore-typeroom .result-search .card.card-items {
+  padding: 1.2rem;
+  text-decoration: none;
+  margin-bottom: 1.2rem;
+}
+
+.explore-typeroom .result-search .card.card-items .image-room {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.explore-typeroom .result-search .card.card-items .image-room img {
+  width: 100%;
+  max-width: 280px;
+  max-height: 280px;
+  border-radius: 12px;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room {
+  margin-top: 1rem;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room .name-room {
+  color: #001845;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room .rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 12px;
+  color: #001845;
+  font-weight: 600;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room .rating ion-icon {
+  color: #ffcb4b;
+  font-size: 16px;
+  margin-right: 4px;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room .price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 8px;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room .price .price-room {
+  font-size: 16px !important;
+  color: #3f895b;
+  font-weight: 500;
+}
+
+.explore-typeroom .result-search .card.card-items .detail-room .price p {
+  font-size: 12px;
+  color: #AAABB1;
+}
+/*# sourceMappingURL=search-typeroom.css.map */

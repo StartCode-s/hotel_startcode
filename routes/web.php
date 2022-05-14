@@ -56,3 +56,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/{id}/delete', 'TipeController@destroy')->name('delete');
     });
 });
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('/checkout', 'BookingController@checkout')->name('checkout');
+    Route::get('/pay/{code}', 'BookingController@pay')->name('pay');
+    Route::get('/transaction', 'BookingController@transaction')->name('transaction');
+});
+Route::post('/order', 'BookingController@order')->name('order');
+Route::post('/checkout-non-register', 'BookingController@checkoutNonRegister')->name('checkout-non-register');
+Route::get('/invoice/{id}', 'BookingController@invoice')->name('invoice');

@@ -8,7 +8,7 @@
 }
 
 #home {
-  background: url(../images/background.jpg);
+  background: url(../images/home-background.jpg);
   min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -18,6 +18,7 @@
 
 #home .home-content {
   min-height: 100vh;
+  padding: 5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,12 +33,6 @@
   font-size: 68px;
 }
 
-#home .home-content .card {
-  padding: 2.8rem 2.5rem;
-  border-radius: 12px;
-  border: none;
-}
-
 #home .home-content .card .head-card {
   margin-bottom: 2rem;
 }
@@ -46,34 +41,12 @@
   font-weight: 600;
   color: #112B3C;
   margin-bottom: 4px;
+  font-size: 28px;
 }
 
 #home .home-content .card .head-card p {
   color: #9b9494;
   font-size: 12px;
-}
-
-#home .home-content .card .form-input {
-  margin-bottom: 1rem;
-}
-
-#home .home-content .card .form-input .form-label {
-  color: #9b9494;
-  font-weight: 500;
-  font-size: 12px;
-}
-
-#home .home-content .card .form-input .form-control, #home .home-content .card .form-input .form-select {
-  border: 1px solid #38694B;
-  color: #38694B;
-  border-radius: 8px;
-  font-size: 14px;
-  padding: .5rem .5rem;
-}
-
-#home .home-content .card .form-input .form-control:focus, #home .home-content .card .form-input .form-select:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
 #home .home-content .card .sign-account p {
@@ -85,7 +58,7 @@
 
 #home .home-content .card .sign-account .d-flex a {
   text-decoration: none;
-  color: #38694B;
+  color: #001845;
   font-weight: 600;
   font-size: 14px;
 }

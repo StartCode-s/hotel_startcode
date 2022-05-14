@@ -131,11 +131,14 @@ class KamarController extends Controller
 
         Kamar::where('id', $id)
         ->update([
-            'tipe' => $request->tipe,
+            'tipe_id' => $request->tipe_id,
+            'nama' => $request->nama,
             'harga' => $request->harga,
+            'jumlah_kamar' => $request->jumlah_kamar,
+            'jumlah_kamar_mandi' => $request->jumlah_kamar_mandi,
             'fasilitas' => $request->fasilitas,
             'max' => $request->max,
-            'status' => $request->status,
+
             'thumb' => $thumbname,
         ]);
 
@@ -143,11 +146,14 @@ class KamarController extends Controller
 
             Kamar::where('id', $id)
             ->update([
-                'tipe' => $request->tipe,
+                'tipe_id' => $request->tipe_id,
+                'nama' => $request->nama,
                 'harga' => $request->harga,
+                'jumlah_kamar' => $request->jumlah_kamar,
+                'jumlah_kamar_mandi' => $request->jumlah_kamar_mandi,
                 'fasilitas' => $request->fasilitas,
                 'max' => $request->max,
-                'status' => $request->status,
+
             ]);
 
         }

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../src/invoice.scss"
+    ],
+    "names": [],
+    "file": "invoice.css"
+}

@@ -77,7 +77,7 @@
                         <th>Harga</th>
                         <th>Fasilitas</th>
                         <th>Max</th>
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
                         <th>Action</th>
 
                     </tr>
@@ -89,17 +89,17 @@
 
 
                             <td>{{ $item->nama }}</td>
-                            <td>{{ $item->tipe_id }}</td>
+                            <td>{{ DB::table('tipe_kamar')->where('id',$item->tipe_id)->first()->nama }}</td>
                             <td>{{ $item->harga }}</td>
                             <td>{{ $item->fasilitas }}</td>
                             <td>{{ $item->max }}</td>
-                            <td>{{ $item->status }}</td>
+                            {{-- <td>{{ $item->status }}</td> --}}
 
                             <td>
                                 <div class="buttonAction">
                                     <button type="button" data-id="{{ $item->id }}" data-bs-toggle="modal"
                                         data-bs-target="#updateTanaman" class="buttons success text-white me-2"
-                                        data-tipe="{{ $item->tipe }}">
+                                        data-id="{{ $item->id }}" data-tipe_id="{{ $item->tipe_id }}" data-nama_tipe="{{ DB::table('tipe_kamar')->where('id',$item->tipe_id)->first()->nama }}" data-nama="{{$item->nama}}" data-harga="{{$item->harga}}" data-jumlah_kamar="{{$item->jumlah_kamar}}" data-jumlah_kamar_mandi="{{$item->jumlah_kamar_mandi}}" data-fasilitas="{{$item->fasilitas}}" data-max="{{$item->max}}" data-thumb="{{ url('thumbKamar/').$item->thumb }}">
 
                                         <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
                                             alt="">
@@ -232,17 +232,61 @@
                 <h5 class="modal-title" id="staticBackdropLabel">Edit Kamar List</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/admin/editKamar/${$(e.relatedTarget).data('id')}" method="post">
+            <form action="/admin/kamar/${$(e.relatedTarget).data('id')}/update" method="post">
                 @csrf
                 <div class="modal-body">
+
+
                     <div class="form-group mb-3">
-                        <label class="form-label" for="Count / QTY">Count / QTY</label>
-                        <input type="number" class="form-control" name="count" id="count" value="${$(e.relatedTarget).data('count')}">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label class="form-label" for="Value">Value</label>
-                        <input type="number" class="form-control" name="value" value="${$(e.relatedTarget).data('value')}" id="value" >
-                    </div>
+                            <label for="roomType" class="form-label">Room Type</label>
+
+                            <select class="form-select" name="tipe_id" id="roomType">
+                                <option value="${$(e.relatedTarget).data('tipe_id')}" selected>${$(e.relatedTarget).data('nama_tipe')}</option>
+
+                                @foreach (DB::table('tipe_kamar')->get() as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="nama">Nama</label>
+                            <input type="text" class="form-control" name="nama" id="nama" value="${$(e.relatedTarget).data('nama')}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="harga">Harga</label>
+                            <input type="number" class="form-control" name="harga" id="harga" value="${$(e.relatedTarget).data('harga')}">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="jumlah_kamar">Jummlah Kamar</label>
+                            <input type="number" class="form-control" name="jumlah_kamar" id="jumlah_kamar" value="${$(e.relatedTarget).data('jumlah_kamar')}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="jumlah_kamar_mandi">Jumlah Kamar Mandi</label>
+                            <input type="number" class="form-control" name="jumlah_kamar_mandi" id="jumlah_kamar_mandi" value="${$(e.relatedTarget).data('jumlah_kamar_mandi')}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="fasilitas" class="form-label">Fasilitas</label>
+                            <textarea class="form-control" id="fasilitas" name="fasilitas" rows="3">${$(e.relatedTarget).data('fasilitas')}</textarea>
+                        </div>
+
+
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="max">Max</label>
+                            <input type="number" class="form-control" name="max" id="max" value="${$(e.relatedTarget).data('max')}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="form-label" for="max">Thumb</label>
+                            <input type="file" name="thumb" class="dropify" data_default_file="${$(e.relatedTarget).data('thumb')}" />
+                        </div>
+
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -252,7 +296,7 @@
 `;
 
             $('#modal-content').html(html);
-
+            $('.dropify').dropify();
         })
     </script>
 

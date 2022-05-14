@@ -3,29 +3,99 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\{Order,Kamar,User};
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Str;
+
+use App\Services\Midtrans\CreateSnapTokenService;
+
 
 class BookingController extends Controller
 {
-    public function room(Request $request)
+    public function order(Request $request)
     {
-        Kamar::all();
-        return view('booking.room', [
-            'data' => Kamar::all()
+
+        $data = Kamar::where('tipe_id',$request->tipe_id)->where('max','>=',$request->adult + $request->childreen)->get();
+        return view('users.order', [
+            'data' => $data,
+            'all' =>$request->all(),
         ]);
     }
 
-    public function order(Request $request)
+    public function checkout(Request $request)
     {
-        Order::create([
-            'user_id' => $request->user_id,
-            'guest_name' => $request->guest_name,
-            'check_in' => $request->check_in,
-            'check_out' => $request->check_out,
-            'total' => $request->total,
-            'kamar_id' => $request->kamar_id,
-            'status' => $request->status,
+
+        $req = json_decode($request->req,TRUE);
+        $diff = strtotime($req['check_in']) - strtotime($req['check_out']);
+        $diff = (int)abs(round($diff / 86400));
+        $total = $diff * Kamar::where('id',$request->room)->first()->harga;
+        $kode_transaksi = 'HT-STRCD-'.Str::upper(Str::random(10).'-'.time());
+
+
+        $order = Order::create([
+            'user_id' => Auth::user()->id,
+            'order_code' => $kode_transaksi,
+            'check_in' => $req['check_in'],
+            'check_out' => $req['check_out'],
+            'total_harga' => $total,
+            'kamar_id' => $request->room,
         ]);
 
-        return redirect()->back()->with(['message'=>'Order berhasil ditambahkan','status'=>'success']);
+
+        return redirect()->route('transaction');
+
+    }
+
+
+    public function transaction(Request $request)
+    {
+        return view('users.transaction');
+    }
+
+    public function pay(Request $request,$code)
+    {
+
+        $order = Order::where('order_code',$code)->first();
+
+        $snapToken = $order->snap_token;
+        if (empty($snapToken)) {
+            $midtrans = new CreateSnapTokenService($order);
+            $snapToken = $midtrans->getSnapToken();
+            $order->snap_token = $snapToken;
+            $order->save();
+
+        }
+
+        $data = $order;
+        return view('users.checkout', compact('order', 'snapToken','data'));
+
+
+    }
+
+
+    public function checkoutNonRegister(Request $request)
+    {
+
+        $data = json_decode($request->data,TRUE);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        Auth::login($user);
+
+        $data['user_id'] = Auth::id();
+        $id = Order::insertGetId($data);
+        return redirect()->route('invoice',['id' => $id]);
+
+    }
+
+    public function invoice($id)
+    {
+        $data = Order::where('id',$id)->first();
+        dd($data);
     }
 }

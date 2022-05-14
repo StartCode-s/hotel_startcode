@@ -1,0 +1,23 @@
+.main-content h1 {
+  font-weight: 600;
+  font-size: 28px;
+  color: #001845;
+  margin-bottom: 1.4rem;
+}
+
+.main-content .form-container h5 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #001845;
+  font-size: 20px;
+}
+
+.card {
+  padding: 1.5rem 2rem;
+}
+
+.wrapper-table table tbody tr td {
+  padding: .4rem 0;
+  font-size: 14px;
+}
+/*# sourceMappingURL=form-order.css.map */
