@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 15, 2022 at 08:33 AM
+-- Generation Time: May 15, 2022 at 08:13 PM
 -- Server version: 8.0.27-0ubuntu0.21.04.1
 -- PHP Version: 7.4.27
 
@@ -130,6 +130,8 @@ CREATE TABLE `order` (
   `transaction_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `transaction_time` timestamp NULL DEFAULT NULL,
   `snap_token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_check_in` tinyint(1) NOT NULL DEFAULT '0',
+  `is_check_out` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -138,8 +140,9 @@ CREATE TABLE `order` (
 -- Dumping data for table `order`
 --
 
-INSERT INTO `order` (`id`, `guest_name`, `user_id`, `order_code`, `check_in`, `check_out`, `total_harga`, `kamar_id`, `status`, `payment_status`, `payment_method`, `transaction_id`, `transaction_time`, `snap_token`, `created_at`, `updated_at`) VALUES
-(1, 'Kurama', 3, 'HT-STRCDMPXV5J', '2022-05-15', '2022-05-16', '802000', 2, 1, '200 | Success, Credit card transaction is successful', 'mandiri | credit_card', '57019f56-4f5c-48c3-860e-f2efd001f2b5', '2022-05-15 01:25:28', 'f5ac7064-0ea6-4efd-b36a-7b626b2a9765', '2022-05-14 18:23:47', '2022-05-14 18:25:32');
+INSERT INTO `order` (`id`, `guest_name`, `user_id`, `order_code`, `check_in`, `check_out`, `total_harga`, `kamar_id`, `status`, `payment_status`, `payment_method`, `transaction_id`, `transaction_time`, `snap_token`, `is_check_in`, `is_check_out`, `created_at`, `updated_at`) VALUES
+(1, 'Kurama', 3, 'HT-STRCDMPXV5J', '2022-05-15', '2022-05-16', '802000', 2, 1, '200 | Success, Credit card transaction is successful', 'mandiri | credit_card', '57019f56-4f5c-48c3-860e-f2efd001f2b5', '2022-05-15 01:25:28', 'f5ac7064-0ea6-4efd-b36a-7b626b2a9765', 1, 0, '2022-05-14 18:23:47', '2022-05-14 20:12:11'),
+(2, 'ALFITO', 4, 'HT-STRCDVK03U7', '2022-05-18', '2022-05-19', '802000', 2, 1, '200 | Success, Credit card transaction is successful', 'mandiri | credit_card', '32b72a48-6eb6-43d7-a43d-d68166321600', '2022-05-15 02:02:41', '39e8a1dc-ede3-4417-ba4a-9ba7b3860006', 0, 0, '2022-05-14 19:00:07', '2022-05-14 19:02:47');
 
 -- --------------------------------------------------------
 
@@ -219,7 +222,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `thumb`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Roary Coffey', 'dasoxydes@mailinator.com', NULL, '$2y$10$NyYLGraXLiOdNZJHzqQwbOC1bTEr5TXdBC/hUJSmDw8hErh2pnGou', 0, NULL, NULL, '2022-05-14 06:32:03', '2022-05-14 06:32:03'),
 (2, 'John Oneal', 'pohubite@mailinator.com', NULL, '$2y$10$vnM5dkBQlus/qBH0liSEtOIb80vZBdUXevz6BkkIpmEe3SXFlUQmO', 0, NULL, NULL, '2022-05-14 16:01:26', '2022-05-14 16:01:26'),
-(3, 'Wesley Pollard', 'nelobaq@mailinator.com', NULL, '$2y$10$/WGw6JqDZQ9WjSh0zDHhhuJqBJ7EFT9h0SWjOtXkJbGGRHLbS8Yge', 0, NULL, NULL, '2022-05-14 18:21:42', '2022-05-14 18:21:42');
+(3, 'Wesley Pollard', 'nelobaq@mailinator.com', NULL, '$2y$10$/WGw6JqDZQ9WjSh0zDHhhuJqBJ7EFT9h0SWjOtXkJbGGRHLbS8Yge', 0, NULL, NULL, '2022-05-14 18:21:42', '2022-05-14 18:21:42'),
+(4, 'Hoolly Adrew', 'holly@gmail.com', NULL, '$2y$10$TdCIGwDYpS/HTyfyFpyvhO.J8u9PFS4fRX2r7mshnfwJ80j2EK/lO', 0, NULL, NULL, '2022-05-14 18:59:13', '2022-05-14 18:59:13');
 
 --
 -- Indexes for dumped tables
@@ -318,7 +322,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -336,7 +340,7 @@ ALTER TABLE `tipe_kamar`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
