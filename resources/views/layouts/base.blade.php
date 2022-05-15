@@ -52,8 +52,8 @@
                         <img src="{{ url('assets/img/faces.jpg') }}" alt="">
                     </div>
                     <div class="profileUser">
-                        <h5 class="labelDay">Morning</h5>
-                        {{-- <h5 class="nameUser">{{ Auth::user()->name }}</h5> --}}
+                        <h5 class="labelDay">Hai,</h5>
+                        <h5 class="nameUser">{{ Auth::user()->name }}</h5>
                     </div>
                 </a>
                 @yield('menu')
@@ -71,63 +71,12 @@
                 </div>
 
                 <div class="user-action">
-                    <div class="dropdown notification">
-                        <button class="dropdown-toggle notification-toggle" type="button" id="notificationButton"
-                            data-bs-toggle="dropdown">
-                            <img src="{{ url('assets/img/notificationBell.svg') }}" alt="">
-                        </button>
-                        <ul class="dropdown-menu notificationList" aria-labelledby="notificationButton">
-                            {{-- @if (Auth::user()->role == 0)
-                                @foreach (DB::table('notification')->where('for', 0)->orderBy('created_at', 'DESC')->limit(3)->get()
-    as $item)
-
-                                    <li class="dropdown-item notification-item">
-                                        <div class="icon">
-                                            <ion-icon name="mail"></ion-icon>
-                                        </div>
-                                        <div class="wraperMessage">
-                                            <p class="label">{{ $item->title }}</p>
-                                            <p class="message">{{ $item->message }}</p>
-                                        </div>
-                                        <p class="time">{{ $item->created_at }}</p>
-                                    </li>
-                                @endforeach
-
-                            @else
-                                @foreach (DB::table('notification')->where('for', Auth::id())->orderBy('created_at', 'DESC')->limit(3)->get()
-    as $item)
-
-                                    <li class="dropdown-item notification-item">
-                                        <div class="icon">
-                                            <ion-icon name="mail"></ion-icon>
-                                        </div>
-                                        <div class="wraperMessage">
-                                            <p class="label">{{ $item->title }}</p>
-                                            <p class="message">{{ $item->message }}</p>
-                                        </div>
-                                        <p class="time">{{ $item->created_at }}</p>
-                                    </li>
-                                @endforeach
-                            @endif --}}
-                        </ul>
-                        <div class="notificationNumber">
-                            <p class="numberAllNotification">
-                                {{-- @if (Auth::user()->role == 0)
-                                    {{ DB::table('notification')->where('for', 0)->limit(3)->count() }}
-                                    @else
-                                    {{ DB::table('notification')->where('for', Auth::id())->limit(3)->count() }}
-                                @endif --}}
-                        </div>
-                    </div>
                     <div class="logoutAction">
-
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                this.closest('form').submit();"> <img src="{{ url('assets/img/powerIcon.svg') }}" alt=""></a>
-
+                            this.closest('form').submit();"> <img src="{{ url('assets/img/powerIcon.svg') }}" alt=""></a>
                         </form>
-
                     </div>
                 </div>
             </div>

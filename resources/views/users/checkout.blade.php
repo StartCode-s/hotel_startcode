@@ -34,7 +34,7 @@
                                 </tr>
                                 <tr>
                                     <td>Total Payable Amount</td>
-                                    <td>: <span class="text-primary">{{ $data->total_harga }}</span></td>
+                                    <td>: <span class="text-primary">Rp {{ $data->total_harga }}</span></td>
                                 </tr>
                             </tbody>
                         </table>

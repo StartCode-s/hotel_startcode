@@ -42,19 +42,19 @@
 
 
                                     @if ($item->status == 0)
-                                        <span class="alert pending-alert">Waiting Paid</span>
+                                        <span class="alerts pending-alerts">Waiting Paid</span>
                                     @elseif(Date::now()->format('Y-m-d') > $item->check_out && $item->status == 0)
-                                        <span class="alert danger-alert">Canceled</span>
+                                        <span class="alerts danger-alerts">Canceled</span>
                                     @elseif($item->status == -1)
-                                        <span class="alert danger-alert">Canceled</span>
+                                        <span class="alerts danger-alerts">Canceled</span>
                                         @elseif($item->status == -2)
-                                        <span class="alert danger-alert">Failed / Error</span>
+                                        <span class="alerts danger-alerts">Failed / Error</span>
                                     @elseif (Date::now()->format('Y-m-d') >= $item->check_in && Date::now()->format('Y-m-d') <= $item->check_out)
-                                        <span class="alert primary-alert">Check-in</span>
+                                        <span class="alerts primary-alerts">Check-in</span>
                                     @elseif(Date::now()->format('Y-m-d') < $item->check_in)
-                                        <span class="alert pending-alert">Waiting Check-in</span>
+                                        <span class="alerts pending-alerts">Waiting Check-in</span>
                                     @elseif(Date::now()->format('Y-m-d') > $item->check_out)
-                                        <span class="alert success-alert">Success</span>
+                                        <span class="alerts success-alerts">Success</span>
                                     @endif
 
                                 </td>
@@ -62,9 +62,9 @@
                                     <td>
                                         @if (is_null($item->transaction_id))
                                             <a href="{{ route('pay', ['code' => $item->order_code]) }}" type="submit"
-                                                class="btn btn-success"> Pay</a>
+                                                class="button button-small button-success"> Pay</a>
                                         @else
-                                            <a class="btn btn-info"
+                                            <a class="button button-small button-primary"
                                                 href="{{ route('transaction-invoice', ['code' => $item->order_code]) }}">Invoice</a>
                                         @endif
                                     </td>
@@ -73,7 +73,7 @@
                                 @if ($item->status == 0)
                                     <td>
                                         <a href="{{ route('cancel-order', ['code' => $item->order_code]) }}"
-                                            class="btn btn-danger">Cancel</a>
+                                            class="button button-danger button-small">Cancel</a>
                                     </td>
                                 @endif
                             </tr>

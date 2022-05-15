@@ -40,7 +40,6 @@
             <a href="/admin/tipe" class="sidebar-menu">Tipe</a>
         </li>
 
-
     </div>
 @endsection
 
@@ -49,10 +48,7 @@
         .dropify-wrapper .dropify-message p {
             font-size: 14px;
         }
-
     </style>
-
-
 
     <div class="contentMain">
         <h2 class="pageNameContent">Kamar List</h2>
@@ -117,13 +113,7 @@
                 </tbody>
             </table>
         </div>
-
-
     </div>
-
-
-
-
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -136,8 +126,6 @@
                 <form action="{{ route('admin.kamar.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-
-
                         <div class="form-group mb-3">
                             <label for="roomType" class="form-label">Room Type</label>
                             <select class="form-select" name="tipe_id" id="roomType">
@@ -158,7 +146,7 @@
                             <input type="number" class="form-control" name="harga" id="harga">
                         </div>
                         <div class="form-group mb-3">
-                            <label class="form-label" for="jumlah_kamar">Jummlah Kamar</label>
+                            <label class="form-label" for="jumlah_kamar">Jumlah Kamar</label>
                             <input type="number" class="form-control" name="jumlah_kamar" id="jumlah_kamar">
                         </div>
 
@@ -172,23 +160,15 @@
                             <textarea class="form-control" id="fasilitas" name="fasilitas" rows="3"></textarea>
                         </div>
 
-
-
                         <div class="form-group mb-3">
-                            <label class="form-label" for="max">Max</label>
+                            <label class="form-label" for="max">Maximal Jumlah Orang</label>
                             <input type="number" class="form-control" name="max" id="max">
                         </div>
 
                         <div class="form-group mb-3">
-                            <label class="form-label" for="max">Thumb</label>
+                            <label class="form-label" for="max">Gambar Kamar</label>
                             <input type="file" name="thumb" class="dropify"  />
                         </div>
-
-
-
-
-
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
