@@ -68,7 +68,7 @@ class BookingController extends Controller
                 'transaction_id' => $request['result']['transaction_id'],
                 'transaction_time' => $request['result']['transaction_time'],
                 'guest_name' => $request['guests'],
-                'status' => 0,
+                'status' => -2,
             ]);
         }
 
@@ -143,6 +143,14 @@ class BookingController extends Controller
     {
         $data = Order::where('order_code',$code)->first();
         return view('users.transaction-invoice', compact('data'));
+    }
+
+    public function cancelOrder(Request $request,$id)
+    {
+        Order::where('id',$id)->update([
+            'status' => -1,
+        ]);
+        return redirect()->back()->with('message','Order Canceled !');
     }
 
 }

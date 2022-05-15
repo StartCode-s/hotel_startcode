@@ -23,13 +23,14 @@
                             <th>Date Transaction</th>
                             <th>Status</th>
                             <th>Action</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
 
 
                         @foreach (DB::table('order')->where('user_id', Auth::id())->get()
-        as $item)
+        as $key=> $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td><span class="status success-status">{{ $item->order_code }}</span></td>
@@ -44,8 +45,10 @@
                                         <span class="alert pending-alert">Waiting Paid</span>
                                     @elseif(Date::now()->format('Y-m-d') > $item->check_out && $item->status == 0)
                                         <span class="alert danger-alert">Canceled</span>
-                                    @elseif($item->status < 0)
+                                    @elseif($item->status == -1)
                                         <span class="alert danger-alert">Canceled</span>
+                                        @elseif($item->status == -2)
+                                        <span class="alert danger-alert">Failed / Error</span>
                                     @elseif (Date::now()->format('Y-m-d') >= $item->check_in && Date::now()->format('Y-m-d') <= $item->check_out)
                                         <span class="alert primary-alert">Check-in</span>
                                     @elseif(Date::now()->format('Y-m-d') < $item->check_in)
@@ -64,6 +67,13 @@
                                             <a class="btn btn-info"
                                                 href="{{ route('transaction-invoice', ['code' => $item->order_code]) }}">Invoice</a>
                                         @endif
+                                    </td>
+                                @endif
+
+                                @if ($item->status == 0)
+                                    <td>
+                                        <a href="{{ route('cancel-order', ['code' => $item->order_code]) }}"
+                                            class="btn btn-danger">Cancel</a>
                                     </td>
                                 @endif
                             </tr>

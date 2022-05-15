@@ -24,7 +24,8 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::prefix('admin')->name('admin.')->group(function () {
+
+Route::prefix('admin')->middleware(['auth','checkRole:2'])->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     });
@@ -58,16 +59,32 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','checkRole:0'])->group(function () {
     Route::post('/checkout', 'BookingController@checkout')->name('checkout');
     Route::get('/pay/{code}', 'BookingController@pay')->name('pay');
+    Route::get('/cancel-order/{code}', 'BookingController@cancelOrder')->name('cancel-order');
     Route::post('/update-transaction', 'BookingController@updateTransaction')->name('update-transaction');
     Route::get('/transaction', 'BookingController@transaction')->name('transaction');
     Route::get('/transaction-invoice/{code}', 'BookingController@transactionInvoice')->name('transaction-invoice');
     Route::get('/transaction-success', 'BookingController@transactionSuccess')->name('transaction-success');
     Route::get('/transaction-pending', 'BookingController@transactionPending')->name('transaction-pending');
     Route::get('/transaction-error', 'BookingController@transactionError')->name('transaction-error');
+    Route::post('/order', 'BookingController@order')->name('order');
+    Route::post('/checkout-non-register', 'BookingController@checkoutNonRegister')->name('checkout-non-register');
+    Route::get('/invoice/{id}', 'BookingController@invoice')->name('invoice');
+
+
 });
-Route::post('/order', 'BookingController@order')->name('order');
-Route::post('/checkout-non-register', 'BookingController@checkoutNonRegister')->name('checkout-non-register');
-Route::get('/invoice/{id}', 'BookingController@invoice')->name('invoice');
+
+
+    Route::prefix('reception')->group(function () {
+        Route::middleware(['checkRole:1','auth'])->group(function () {
+            Route::get('/', 'ReceptionController@index')->name('reception.index');
+            Route::get('/search', 'ReceptionController@search')->name('reception.search');
+        });
+
+        Route::get('/checkIn/{code}', 'ReceptionController@checkIn')->name('reception.checkIn');
+        Route::get('/checkOut/{code}', 'ReceptionController@checkOut')->name('reception.checkOut');
+    });
+
+
