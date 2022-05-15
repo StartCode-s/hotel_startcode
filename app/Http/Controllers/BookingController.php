@@ -26,12 +26,11 @@ class BookingController extends Controller
 
     public function checkout(Request $request)
     {
-
         $req = json_decode($request->req,TRUE);
         $diff = strtotime($req['check_in']) - strtotime($req['check_out']);
         $diff = (int)abs(round($diff / 86400));
         $total = $diff * Kamar::where('id',$request->room)->first()->harga;
-        $kode_transaksi = 'HT-STRCD-'.Str::upper(Str::random(10).'-'.time());
+        $kode_transaksi = 'HT-STRCD'.Str::upper(Str::random(6));
 
 
         $order = Order::create([
@@ -39,8 +38,9 @@ class BookingController extends Controller
             'order_code' => $kode_transaksi,
             'check_in' => $req['check_in'],
             'check_out' => $req['check_out'],
-            'total_harga' => $total,
+            'total_harga' => $total + 2000,
             'kamar_id' => $request->room,
+            'status' => 0,
         ]);
 
 
@@ -51,14 +51,27 @@ class BookingController extends Controller
 
     public function updateTransaction(Request $request)
     {
-        Order::where('id',$request['id'])->update([
-            'payment_status' => $request['result']['status_code'] . ' | '.$request['result']['status_message'],
-            'payment_method' => $request['result']['bank'].' | '.$request['result']['payment_type'],
-            'transaction_id' => $request['result']['transaction_id'],
-            'transaction_time' => $request['result']['transaction_time'],
-            'guest_name' => $request['guests'],
-            'status' => '1',
-        ]);
+
+        if($request['status'] == 'Success'){
+            Order::where('id',$request['id'])->update([
+                'payment_status' => $request['result']['status_code'] . ' | '.$request['result']['status_message'],
+                'payment_method' => $request['result']['bank'].' | '.$request['result']['payment_type'],
+                'transaction_id' => $request['result']['transaction_id'],
+                'transaction_time' => $request['result']['transaction_time'],
+                'guest_name' => $request['guests'],
+                'status' => 1,
+            ]);
+        }else {
+            Order::where('id',$request['id'])->update([
+                'payment_status' => $request['result']['status_code'] . ' | '.$request['result']['status_message'],
+                'payment_method' => $request['result']['bank'].' | '.$request['result']['payment_type'],
+                'transaction_id' => $request['result']['transaction_id'],
+                'transaction_time' => $request['result']['transaction_time'],
+                'guest_name' => $request['guests'],
+                'status' => 0,
+            ]);
+        }
+
 
         return response()->json(['statusCode'=>200,'message'=>'Success Update Transaction !','status'=>'success'], 200);
     }

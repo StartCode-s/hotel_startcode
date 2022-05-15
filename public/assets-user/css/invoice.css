@@ -1,1 +1,8 @@
-/* No CSS *//*# sourceMappingURL=invoice.css.map */
+.main-content .container .card {
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid #e9e8e8;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=invoice.css.map */

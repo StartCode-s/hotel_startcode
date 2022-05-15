@@ -1,0 +1,105 @@
+.title {
+  font-weight: 600;
+  font-size: 28px;
+  color: #001845;
+}
+
+/*Component Table*/
+.wrapperTable {
+  padding: 2rem 0;
+}
+
+.wrapperTable .pagination {
+  margin-top: 20rem;
+}
+
+.wrapperTable .pagination .paginate_button.active .page-link {
+  background: #2f466e !important;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.wrapperTable .pagination .paginate_button .page-link {
+  border: none;
+  background: transparent !important;
+  color: #2f466e;
+  padding: .2rem .8rem;
+  font-weight: 300;
+}
+
+.wrapperTable .tables {
+  border-spacing: 0 10px !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+.wrapperTable .tables thead tr {
+  -webkit-box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+          box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+}
+
+.wrapperTable .tables thead tr th {
+  color: #2f466e;
+  font-weight: 500;
+  vertical-align: middle;
+  padding: .8rem;
+  background-color: #fff;
+}
+
+.wrapperTable .tables thead tr th:first-child {
+  -moz-border-radius: 10px 0px 0px 10px !important;
+  -webkit-border-radius: 10px 0px 0px 10px !important;
+}
+
+.wrapperTable .tables thead tr th:last-child {
+  -webkit-border-radius: 0px 10px 10px 0px !important;
+  -moz-border-radius: 0px 10px 10px 0px !important;
+}
+
+.wrapperTable .tables tbody tr:last-child {
+  -webkit-box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+          box-shadow: 0px 36px 80px rgba(0, 0, 0, 0.02), 0px 4.50776px 10.0172px rgba(0, 0, 0, 0.04);
+}
+
+.wrapperTable .tables tbody tr td {
+  color: #2f466e;
+  font-weight: 300;
+  vertical-align: middle;
+  height: 100%;
+  padding: .8rem;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.wrapperTable .tables tbody tr td:first-child {
+  -moz-border-radius: 10px 0px 0px 10px !important;
+  -webkit-border-radius: 10px 0px 0px 10px !important;
+}
+
+.wrapperTable .tables tbody tr td:last-child {
+  -webkit-border-radius: 0px 10px 10px 0px !important;
+  -moz-border-radius: 0px 10px 10px 0px !important;
+}
+
+@media screen and (max-width: 576px) {
+  .dataTables_length {
+    margin-bottom: .5rem;
+    font-size: 12px;
+  }
+  .dataTables_wrapper .dataTables_filter {
+    font-size: 12px;
+  }
+  .form-select, .form-control {
+    font-size: 12px;
+  }
+  .wrapperTable .tables thead tr th {
+    font-size: 12px;
+  }
+  .wrapperTable .tables tbody tr td {
+    font-size: 12px;
+  }
+  .wrapperTable .tables tbody tr td .alert {
+    font-size: 12px;
+  }
+}
+/*# sourceMappingURL=history-transaksi.css.map */

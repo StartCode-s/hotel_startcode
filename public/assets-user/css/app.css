@@ -166,7 +166,7 @@ input[type="radio"]:checked {
 }
 
 .sidebar-container .sidebar-wrapper .sidebar-menu .text-menu {
-  color: #9b9494;
+  color: #AAABB1;
   font-weight: 400;
   font-size: 12px;
   margin: 20px 0 8px 0;
@@ -250,5 +250,69 @@ input[type="radio"]:checked {
   .wrapper-table table tbody tr td {
     font-size: 12px;
   }
+}
+
+.status {
+  border-radius: 6px;
+  padding: 4px 8px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -moz-box-align: center;
+  font-weight: 500;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.status.success-status {
+  background-color: #1c8b16;
+  color: #fff;
+}
+
+.alert {
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin: 0;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -moz-box-align: center;
+  font-weight: 500;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.alert.success-alert {
+  background-color: #EBF9F4;
+  color: #1a984a;
+}
+
+.alert.pending-alert {
+  background-color: #FFF7E6;
+  color: #FFB10A;
+}
+
+.alert.primary-alert {
+  background-color: #F2F4F8;
+  color: #001845;
+}
+
+.alert.danger-alert {
+  background-color: #FDF4F6;
+  color: #df4d70;
 }
 /*# sourceMappingURL=app.css.map */

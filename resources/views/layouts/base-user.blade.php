@@ -45,19 +45,19 @@
                 </div>
                 <div class="sidebar-menu">
                     <p class="text-menu">User Menu</p>
-                    <a href="#" class="sidebar-link">
+                    <a href="/" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/booking.png') }}" alt="">
                         Booking Room
                     </a>
-                    <a href="#" class="sidebar-link">
+                    <a href="/transaction" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/calendar.png') }}" alt="">
                         History
                     </a>
-                    <p class="text-menu">Hotel Menu</p>
+                    {{-- <p class="text-menu">Hotel Menu</p>
                     <a href="#" class="sidebar-link">
                         <img src="{{ url('assets-user/images/icon/buildings.png') }}" alt="">
                         Fasilitas Hotel
-                    </a>
+                    </a> --}}
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
     <!--Bundle JS Bootstrap-->
     <script src="{{ url('assets-user/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('assets-user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Ion Icon-->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>

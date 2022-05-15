@@ -53,8 +53,8 @@
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="checkout" class="form-label">Check-out</label>
-                                            <input type="date" name="check_out" id="checkout" min="{{ date('Y-m-d') }}"
-                                                class="form-control" required>
+                                            <input type="date" name="check_out" id="checkout"
+                                                min="{{ date('Y-m-d') }}" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -130,10 +130,30 @@
     <script src="{{ url('assets-user/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('assets-user/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script>
+        function padTo2Digits(num) {
+            return num.toString().padStart(2, '0');
+        }
+
+        function formatDate(date) {
+            return [
+                date.getFullYear(),
+                padTo2Digits(date.getMonth() + 1),
+                padTo2Digits(date.getDate()),
+            ].join('-');
+
+        }
+
         function updatedate() {
             var firstdate = document.getElementById("checkin").value;
             document.getElementById("checkout").value = "";
-            document.getElementById("checkout").setAttribute("min", firstdate);
+            // Create new Date instance
+            var date = new Date(firstdate);
+
+            // Add a day
+            date.setDate(date.getDate() + 1);
+
+            console.log(formatDate(date));
+            document.getElementById("checkout").setAttribute("min", formatDate(date));
         }
     </script>
 </body>

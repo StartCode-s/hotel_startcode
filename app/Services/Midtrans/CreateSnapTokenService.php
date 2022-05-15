@@ -21,7 +21,6 @@ class CreateSnapTokenService extends Midtrans
     {
 
 
-
         $params = [
             'transaction_details' => [
                 'order_id' => $this->order->id.Carbon::now()->timestamp,
