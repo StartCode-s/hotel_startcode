@@ -71,6 +71,7 @@
                                         <label for="childvalue" class="form-label">Children</label>
                                         <select class="form-select" name="childreen" id="childvalue">
                                             <option value="" selected>Select Count</option>
+                                            <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -93,7 +94,14 @@
                 </div>
                 <div class="col-8">
                     <div class="row">
-                        @if (is_null($data) || empty($data))
+                        @if ($data->count()==0)
+                        <div class="col-12">
+                            <!--not find result-->
+                            <div class="not-find-result d-flex flex-column justify-content-center align-items-center w-100">
+                                <img class="mb-3" src="{{ url('assets-user/images/not-find.png') }}" alt="">
+                                <h5>Not Find Result</h5>
+                            </div>
+                        </div>
                         @else
                             @foreach ($data as $item)
                                 <div class="col-4">
@@ -104,10 +112,6 @@
                                         <div class="detail-room">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <h5 class="name-room">{{ $item->nama }}</h5>
-                                                <div class="rating">
-                                                    <ion-icon name="star"></ion-icon>
-                                                    {{ $item->rate }}
-                                                </div>
                                             </div>
                                             <div class="d-flex price">
                                                 <p class="price-room">{{ $item->harga }}</p>
@@ -132,7 +136,6 @@
                                 </div>
                             @endforeach
                         @endif
-
                     </div>
                 </div>
             </div>

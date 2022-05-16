@@ -23,17 +23,22 @@
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
-            <a href="/admin/order" class="sidebar-menu">Order</a>
+            <a href="/admin/fasilitas" class="sidebar-menu">Fasilitas Kamar</a>
         </li>
 
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
-            <a href="/admin/tipe" class="sidebar-menu">Tipe</a>
+            <a href="/admin/order" class="sidebar-menu">Order</a>
         </li>
 
-
+        <li class="list-menu active">
+            <div class="icon">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <a href="/admin/tipe" class="sidebar-menu">Tipe</a>
+        </li>
     </div>
 @endsection
 
@@ -55,7 +60,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nama</th>
+                        <th>Tipe Room</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -72,7 +77,7 @@
                                         <img width="20" height="20" src="{{ url('assets/img/create-outline 1.svg') }}"
                                             alt="">
                                     </button>
-                                    <a href="{{ route('admin.kamar.delete', ['id' => $item->id]) }}"
+                                    <a href="{{ route('admin.tipe.delete', ['id' => $item->id]) }}"
                                         class="buttons danger text-white">
                                         <img width="20" height="20" src="{{ url('assets/img/trash-outline 1.svg') }}"
                                             alt="">

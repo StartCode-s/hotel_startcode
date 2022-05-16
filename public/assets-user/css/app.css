@@ -8,19 +8,19 @@
 }
 
 body {
-  background-color: #F6F8FD;
+  background-color: #F6F8FD !important;
 }
 
 input[type="checkbox"]:checked {
-  border: 1px solid #3f895b;
-  background-color: #3f895b;
+  border: 1px solid #127efe;
+  background-color: #127efe;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
 input[type="radio"]:checked {
-  border: 1px solid #3f895b;
-  background-color: #3f895b;
+  border: 1px solid #127efe;
+  background-color: #127efe;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -50,11 +50,11 @@ input[type="radio"]:checked {
       -ms-flex-align: center;
           align-items: center;
   font-size: 18px;
-  color: #3f895b;
+  color: #001845;
 }
 
 .navbar .navbar-brand:hover {
-  color: #3f895b;
+  color: #001845;
 }
 
 .navbar .navbar-brand img {

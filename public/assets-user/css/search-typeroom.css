@@ -41,27 +41,9 @@
 }
 
 .explore-typeroom .result-search .card.card-items .detail-room .name-room {
-  color: #001845;
+  color: #293d5f;
   font-weight: 700;
-  font-size: 14px;
-}
-
-.explore-typeroom .result-search .card.card-items .detail-room .rating {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 12px;
-  color: #001845;
-  font-weight: 600;
-}
-
-.explore-typeroom .result-search .card.card-items .detail-room .rating ion-icon {
-  color: #ffcb4b;
-  font-size: 16px;
-  margin-right: 4px;
+  font-size: 20px;
 }
 
 .explore-typeroom .result-search .card.card-items .detail-room .price {
@@ -71,17 +53,150 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
 .explore-typeroom .result-search .card.card-items .detail-room .price .price-room {
   font-size: 16px !important;
-  color: #3f895b;
-  font-weight: 500;
+  color: #127efe;
+  font-weight: 600;
 }
 
 .explore-typeroom .result-search .card.card-items .detail-room .price p {
   font-size: 12px;
   color: #AAABB1;
+}
+
+.detail-room-button {
+  color: #001845;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  margin: 1rem 0 0 0;
+}
+
+.detail-room .modal-header, .detail-room .modal-footer {
+  border: none;
+  margin: 0;
+  padding: 2rem 2rem 1rem 2rem;
+}
+
+.detail-room .modal-dialog {
+  max-width: 700px;
+}
+
+.detail-room .modal-dialog .modal-content {
+  border-radius: 24px;
+}
+
+.detail-room .modal-body {
+  padding: 2rem;
+}
+
+.detail-room .modal-body .detail-room-wrapper .images-room {
+  margin-bottom: 2rem;
+}
+
+.detail-room .modal-body .detail-room-wrapper .images-room img {
+  width: 100%;
+  border-radius: 24px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.detail-room .modal-body .detail-room-wrapper .name-room {
+  font-size: 26px !important;
+}
+
+.detail-room .modal-body .detail-room-wrapper .alamat {
+  font-size: 14px;
+  font-weight: 500;
+  color: #93949c;
+  padding: .5rem 0 2rem 0;
+}
+
+.detail-room .modal-body .detail-room-wrapper .wrapper-tabs {
+  margin-bottom: 1rem;
+}
+
+.detail-room .modal-body .detail-room-wrapper .wrapper-tabs .nav-tabs {
+  border: none;
+}
+
+.detail-room .modal-body .detail-room-wrapper .wrapper-tabs .nav-tabs .nav-link {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  font-weight: 600;
+  color: #848589;
+  font-size: 14px;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.detail-room .modal-body .detail-room-wrapper .wrapper-tabs .nav-tabs .nav-link.active {
+  color: #127efe;
+  position: relative;
+}
+
+.detail-room .modal-body .detail-room-wrapper .wrapper-tabs .nav-tabs .nav-link.active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 4px;
+  border-radius: 24px;
+  left: 0;
+  bottom: -5px;
+  width: 35%;
+  background-color: #127efe;
+}
+
+.detail-room .modal-body .detail-room-wrapper .wrapper-tabs .tab-content .tab-pane {
+  padding: 1.5rem 0;
+  color: #93949c;
+  font-size: 14px;
+}
+
+.detail-room .modal-body .detail-room-wrapper .room-features h5 {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 1rem;
+}
+
+.detail-room .modal-body .detail-room-wrapper .room-features .wrapper-room-features {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.detail-room .modal-body .detail-room-wrapper .room-features .wrapper-room-features .feature {
+  margin-right: 1rem;
+}
+
+.detail-room .modal-body .detail-room-wrapper .room-features .wrapper-room-features .feature .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 4px;
+}
+
+.detail-room .modal-body .detail-room-wrapper .room-features .wrapper-room-features .feature .icon ion-icon {
+  font-size: 18px;
+}
+
+.detail-room .modal-body .detail-room-wrapper .room-features .wrapper-room-features .feature p {
+  font-size: 14px;
+  font-weight: 400;
 }
 /*# sourceMappingURL=search-typeroom.css.map */

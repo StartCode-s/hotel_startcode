@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Models\Tipe;
-class TipeController extends Controller
+use App\Models\Fasilitas;
+
+class FasilitasController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.tipe', [
-            'data' => Tipe::all()
+        return view('admin.fasilitas', [
+            'data' => Fasilitas::all()
         ]);
     }
 
@@ -28,14 +30,15 @@ class TipeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required',
+            'name' => 'required',
+            'desc' => 'required'
         ]);
-            Tipe::create([
-                'nama' => $request->nama,
+            Fasilitas::create([
+                'name' => $request->name,
+                'desc' => $request->desc,
             ]);
 
-
-        return redirect()->route('admin.tipe.index')->with(['message'=>'Tipe berhasil di tambah !','status'=>'success']);
+        return redirect()->route('admin.fasilitas.index')->with(['message'=>'Fasilitas berhasil di tambah !','status'=>'success']);
     }
 
 
@@ -48,12 +51,13 @@ class TipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Tipe::where('id', $id)
+        Fasilitas::where('id', $id)
         ->update([
-            'nama' => $request->nama,
+            'name' => $request->name,
+            'desc' => $request->desc,
         ]);
 
-        return redirect()->route('admin.tipe.index')->with(['message'=>'Tipe Berhasil di Update!','status'=>'warning']);
+        return redirect()->route('admin.fasilitas.index')->with(['message'=>'Fasilitas Berhasil di Update!','status'=>'success']);
     }
 
     /**
@@ -65,7 +69,7 @@ class TipeController extends Controller
     public function destroy($id)
     {
 
-        Tipe::destroy($id);
-        return redirect()->route('admin.tipe.index')->with(['message'=>'Tipe Berhasil di delete','status'=>'danger']);
+        Fasilitas::destroy($id);
+        return redirect()->route('admin.fasilitas.index')->with(['message'=>'Fasilitas Berhasil di delete','status'=>'danger']);
     }
 }

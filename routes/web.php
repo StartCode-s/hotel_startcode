@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{KamarController,OrderController,TipeController};
+use App\Http\Controllers\{KamarController,OrderController,TipeController,FasilitasController};
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +55,15 @@ Route::prefix('admin')->middleware(['auth','checkRole:2'])->name('admin.')->grou
         Route::get('/{id}/edit', 'TipeController@edit')->name('edit');
         Route::post('/{id}/update', 'TipeController@update')->name('update');
         Route::get('/{id}/delete', 'TipeController@destroy')->name('delete');
+    });
+
+    Route::prefix('fasilitas')->name('fasilitas.')->group(function () {
+        Route::get('/', 'FasilitasController@index')->name('index');
+        Route::get('/create', 'FasilitasController@create')->name('create');
+        Route::post('/store', 'FasilitasController@store')->name('store');
+        Route::get('/{id}/edit', 'FasilitasController@edit')->name('edit');
+        Route::post('/{id}/update', 'FasilitasController@update')->name('update');
+        Route::get('/{id}/delete', 'FasilitasController@destroy')->name('delete');
     });
 });
 

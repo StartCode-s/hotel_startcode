@@ -50,7 +50,7 @@ class KamarController extends Controller
         ]);
 
 
-        if ($request->hasFile('thumb')) {
+        if ($request->hasfile('thumb')) {
             $file = $request->file('thumb');
             $thumbname = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path() . '/thumbkamar' . '/', $thumbname);
@@ -74,7 +74,6 @@ class KamarController extends Controller
                 'jumlah_kamar' => $request->jumlah_kamar,
                 'jumlah_kamar_mandi' => $request->jumlah_kamar_mandi,
                 'fasilitas' => $request->fasilitas,
-
                 'max' => $request->max,
             ]);
         }

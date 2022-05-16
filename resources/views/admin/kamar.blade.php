@@ -19,11 +19,18 @@
             <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
         </li>
 
-        <li class="list-menu ">
+        <li class="list-menu active">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin/kamar" class="sidebar-menu">Kamar</a>
+        </li>
+
+        <li class="list-menu ">
+            <div class="icon">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <a href="/admin/fasilitas" class="sidebar-menu">Fasilitas Kamar</a>
         </li>
 
         <li class="list-menu ">
@@ -39,7 +46,6 @@
             </div>
             <a href="/admin/tipe" class="sidebar-menu">Tipe</a>
         </li>
-
     </div>
 @endsection
 
@@ -146,7 +152,7 @@
                             <input type="number" class="form-control" name="harga" id="harga">
                         </div>
                         <div class="form-group mb-3">
-                            <label class="form-label" for="jumlah_kamar">Jumlah Kamar</label>
+                            <label class="form-label" for="jumlah_kamar">Jumlah Kasur</label>
                             <input type="number" class="form-control" name="jumlah_kamar" id="jumlah_kamar">
                         </div>
 
@@ -157,7 +163,14 @@
 
                         <div class="form-group mb-3">
                             <label for="fasilitas" class="form-label">Fasilitas</label>
-                            <textarea class="form-control" id="fasilitas" name="fasilitas" rows="3"></textarea>
+                            <select class="form-select" id="fasilitas" name="fasilitas">
+                                <option value="">Pilih Fasilitas</option>
+                                @foreach (
+                                    DB::table('fasilitas')->get() as $item
+                                )
+                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group mb-3">

@@ -12,24 +12,34 @@
         <li class="listMenuName">
             <p>Admin Menu</p>
         </li>
-        <li class="list-menu ">
+        <li class="list-menu active">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin" class="sidebar-menu">Dashboard Admin</a>
         </li>
+
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin/kamar" class="sidebar-menu">Kamar</a>
         </li>
+
+        <li class="list-menu ">
+            <div class="icon">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <a href="/admin/fasilitas" class="sidebar-menu">Fasilitas Kamar</a>
+        </li>
+
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
             <a href="/admin/order" class="sidebar-menu">Order</a>
         </li>
+
         <li class="list-menu ">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
