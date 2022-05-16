@@ -107,7 +107,7 @@
                                 title: 'Good Job !',
                                 text: 'Your Transaction has been Success',
                             }).then(function() {
-                                window.location.href = "/transaction";
+                                window.location.href = "/transaction-invoice/"+data.code;
                             });
                         }
                     });
@@ -137,7 +137,7 @@
                                 title: 'Oops...',
                                 text: 'Something Your Transaction is Pending',
                             }).then(function() {
-                                window.location.href = "/transaction";
+                                window.location.href = "/transaction-invoice/"+data.code;
                             });
                         }
                     });
@@ -168,7 +168,7 @@
                                 text: 'Something went wrong!',
 
                             }).then(function() {
-                                window.location.href = "/transaction";
+                                window.location.href = "/transaction-invoice/"+data.code;
                             });
                         }
                     });

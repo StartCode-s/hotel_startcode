@@ -22,6 +22,8 @@ class ReceptionController extends Controller
             'data' => Order::where('order_code','HT-STR'.$_GET['order_code'])->first(),
             'checkInQr' => $checkInQr,
             'checkOutQr' => $checkOutQr,
+            'checkin_code' => env('APP_URL').'/reception/checkIn/'.'HT-STR'.$_GET['order_code'],
+            'checkout_code' => env('APP_URL').'/reception/checkOut/'.'HT-STR'.$_GET['order_code'],
         ]);
     }
 

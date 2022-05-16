@@ -20,6 +20,7 @@
                         </center>
                     @else
                         {!! $checkInQr !!}
+                        <a href="{{$checkin_code}}" class="button button-small button-success">Check-in</a>
                         <br>
                         <br>
                         <br>
@@ -37,9 +38,9 @@
                         </center>
                     @else
                         {!! $checkOutQr !!}
+                        <a href="{{$checkout_code}}" class="button button-small button-success">Check-out</a>
                         <br>
                         <br>
-
                         <br>
                         <center>
                             <h2>Check Out</h2>

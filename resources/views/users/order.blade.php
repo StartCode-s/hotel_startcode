@@ -105,7 +105,7 @@
                         @else
                             @foreach ($data as $item)
                                 <div class="col-4">
-                                    <a href="#" class="card card-items">
+                                    <div class="card card-items">
                                         <div class="image-room">
                                             <img src="{{ url('thumbkamar/' . $item->thumb) }}" alt="">
                                         </div>
@@ -114,12 +114,12 @@
                                                 <h5 class="name-room">{{ $item->nama }}</h5>
                                             </div>
                                             <div class="d-flex price">
-                                                <p class="price-room">{{ $item->harga }}</p>
+                                                <p class="price-room">Rp {{ $item->harga }}</p>
                                                 <p>/Night</p>
                                             </div>
                                         </div>
-                                        @if (DB::table('order')->where('kamar_id', $item->id)->where('check_in', '>=', $all['check_in'])->where('check_out', '<=', $all['check_out'])->exists())
-                                            <button class="button btn-danger button-small mt-3" disabled>Non
+                                        @if (DB::table('order')->where('kamar_id', $item->id)->where('check_in', '>=', $all['check_in'])->where('check_out', '<=', $all['check_out'])->where('status','>',0)->exists())
+                                            <button class="button button-danger button-small mt-3" disabled>Non
                                                 Available</button>
                                         @else
                                             <form action="{{ route('checkout') }}" class="ord" method="post">
@@ -130,9 +130,10 @@
                                                     Hotel</button>
                                             </form>
                                         @endif
-                                        <button class="button btn-info button-small mt-3" data-bs-toggle="modal"
-                                            data-bs-target="#staticBackdrop" data-id="{{$item->id}}" data-tipe_id="{{$item->tipe_id}}" data-nama="{{$item->nama}}" data-harga="{{$item->harga}}" data-jumlah_kamar="{{$item->jumlah_kamar}}" data-jumlah_kamar_mandi="{{$item->jumlah_kamar_mandi}}" data-fasilitas="{{$item->fasilitas}}" data-max="{{$item->max}}" data-status="{{$item->status}}" data-thumb="{{$item->thumb}}">Detail Room</button>
-                                    </a>
+                                        <button type="button" class="detail-room-button" data-bs-toggle="modal" data-bs-target="#modal-detail-room" data-bs-target="#staticBackdrop" data-id="{{$item->id}}" data-tipe_id="{{$item->tipe_id}}" data-nama="{{$item->nama}}" data-harga="{{$item->harga}}" data-jumlah_kamar="{{$item->jumlah_kamar}}" data-jumlah_kamar_mandi="{{$item->jumlah_kamar_mandi}}" data-fasilitas="{{$item->fasilitas}}" data-max="{{$item->max}}" data-status="{{$item->status}}" data-thumb="{{ url('thumbkamar/' . $item->thumb) }}">
+                                            Detail Room
+                                        </button>
+                                    </div>
                                 </div>
                             @endforeach
                         @endif
@@ -146,28 +147,86 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
+    <div class="modal fade detail-room" id="modal-detail-room" tabindex="-1" aria-labelledby="detail-Room" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" id="modal-content">
+            <div class="modal-body">
+                loading...
             </div>
+          </div>
         </div>
     </div>
 @endsection
 
 
 @section('js')
+
+
+
+    <script>
+        $('#modal-detail-room').on('shown.bs.modal', function(e) {
+            var html = `
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-room-wrapper">
+                    <div class="images-room d-flex justify-content-center">
+                        <img src="${$(e.relatedTarget).data('thumb')}" alt="">
+                    </div>
+                    <h1 class="name-room">${$(e.relatedTarget).data('nama')}</h1>
+                    <p class="alamat">JL Pisang mas 4 blok c2 nomor 1 Kab Bogor Kecamatan Sumur Batu</p>
+
+                    <div class="wrapper-tabs">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-deskripsi-tab" data-bs-toggle="tab" data-bs-target="#nav-deskripsi" type="button" role="tab" aria-controls="nav-deskripsi" aria-selected="true">Description</button>
+                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+                        </div>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-deskripsi" role="tabpanel" aria-labelledby="nav-deskripsi-tab" tabindex="0">The startcode hotel provides the best experience in each of your lodgings, provides the best service and also has very complete facilities</div>
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                                Call Center : +6281290053372
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="room-features">
+                        <h5>Room Features</h5>
+                        <div class="wrapper-room-features">
+                            <div class="feature d-flex align-items-center">
+                                <div class="icon">
+                                    <ion-icon name="wifi-outline"></ion-icon>
+                                </div>
+                                <p>Wi-Fi</p>
+                            </div>
+                            <div class="feature d-flex align-items-center">
+                                <div class="icon">
+                                    <ion-icon name="bed-outline"></ion-icon>
+                                </div>
+                                <p>King Bed</p>
+                            </div>
+                            <div class="feature d-flex align-items-center">
+                                <div class="icon">
+                                    <ion-icon name="thermometer-outline"></ion-icon>
+                                </div>
+                                <p>AC</p>
+                            </div>
+                            <div class="feature d-flex align-items-center">
+                                <div class="icon">
+                                    <ion-icon name="fast-food-outline"></ion-icon>
+                                </div>
+                                <p>Breakfast</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    `;
+            $('#modal-content').html(html);
+
+        })
+    </script>
     <script>
         $(".ord").on('submit', function() {
             console.log(@json($all));

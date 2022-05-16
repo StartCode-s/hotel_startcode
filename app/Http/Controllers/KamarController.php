@@ -49,7 +49,6 @@ class KamarController extends Controller
 
         ]);
 
-
         if ($request->hasfile('thumb')) {
             $file = $request->file('thumb');
             $thumbname = time() . '-' . $file->getClientOriginalName();

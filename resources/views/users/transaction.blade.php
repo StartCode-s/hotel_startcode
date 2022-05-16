@@ -23,7 +23,7 @@
                             <th>Date Transaction</th>
                             <th>Status</th>
                             <th>Action</th>
-                            <th></th>
+                            <th>Invoice</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,12 +39,14 @@
                                 <td>{{ $item->guest_name }}</td>
                                 <td>{{ $item->transaction_time }}</td>
                                 <td>
-
-
                                     @if ($item->status == 0)
                                         <span class="alerts pending-alerts">Waiting Paid</span>
                                     @elseif(Date::now()->format('Y-m-d') > $item->check_out && $item->status == 0)
                                         <span class="alerts danger-alerts">Canceled</span>
+                                    @elseif($item->is_check_out)
+                                        <span class="alerts danger-alerts">Check-out</span>
+                                    @elseif($item->is_check_in)
+                                        <span class="alerts danger-alerts">Check-in</span>
                                     @elseif($item->status == -1)
                                         <span class="alerts danger-alerts">Canceled</span>
                                         @elseif($item->status == -2)
@@ -72,9 +74,13 @@
 
                                 @if ($item->status == 0)
                                     <td>
-                                        <a href="{{ route('cancel-order', ['code' => $item->order_code]) }}"
+                                        <a href="{{ route('cancel-order', ['code' => $item->id]) }}"
                                             class="button button-danger button-small">Cancel</a>
                                     </td>
+
+                                    @else
+                                        <td></td>
+                                        <td></td>
                                 @endif
                             </tr>
                         @endforeach

@@ -146,10 +146,8 @@
 
     <script>
         $('#updateTanaman').on('shown.bs.modal', function(e) {
-
-
             var html = `
-    <div class="modal-header">
+            <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabel">Edit tipe List</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -168,7 +166,6 @@
                 </div>
             </form>
 `;
-
             $('#modal-content').html(html);
 
         })

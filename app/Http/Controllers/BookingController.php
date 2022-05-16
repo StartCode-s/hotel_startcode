@@ -73,7 +73,7 @@ class BookingController extends Controller
         }
 
 
-        return response()->json(['statusCode'=>200,'message'=>'Success Update Transaction !','status'=>'success'], 200);
+        return response()->json(['statusCode'=>200,'message'=>'Success Update Transaction !','status'=>'success','code' => Order::where('id',$request['id'])->first()->order_code], 200);
     }
 
 
