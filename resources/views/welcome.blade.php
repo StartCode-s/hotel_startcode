@@ -113,7 +113,7 @@
 
                             @if (!Auth::check())
                                 <div class="sign-account mt-4">
-                                    <p>Want to login or register account ?</p>
+                                    <p>You have to login or register first !</p>
                                     <div class="d-flex justify-content-center">
                                         <a href="{{ route('login') }}" class="me-2">Login</a>
                                         <a href="{{ route('register') }}">Register</a>

@@ -44,9 +44,9 @@
                                     @elseif(Date::now()->format('Y-m-d') > $item->check_out && $item->status == 0)
                                         <span class="alerts danger-alerts">Canceled</span>
                                     @elseif($item->is_check_out)
-                                        <span class="alerts danger-alerts">Check-out</span>
+                                        <span class="alerts success-alerts">Check-out</span>
                                     @elseif($item->is_check_in)
-                                        <span class="alerts danger-alerts">Check-in</span>
+                                        <span class="alerts primary-alerts">Check-in</span>
                                     @elseif($item->status == -1)
                                         <span class="alerts danger-alerts">Canceled</span>
                                         @elseif($item->status == -2)

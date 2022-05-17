@@ -19,11 +19,10 @@
                             <h1>Already Check In</h1>
                         </center>
                     @else
-                        {!! $checkInQr !!}
-                        <a href="{{$checkin_code}}" class="button button-small button-success">Check-in</a>
-                        <br>
-                        <br>
-                        <br>
+                        <div class="d-flex flex-column mb-3 align-items-center">
+                            {!! $checkInQr !!}
+                            <a href="{{$checkin_code}}" class="button button-small button-success mt-3">Check-in</a>
+                        </div>
                         <center>
                             <h2>Check In</h2>
                         </center>
@@ -37,11 +36,10 @@
                             <h1>Already Check Out</h1>
                         </center>
                     @else
-                        {!! $checkOutQr !!}
-                        <a href="{{$checkout_code}}" class="button button-small button-success">Check-out</a>
-                        <br>
-                        <br>
-                        <br>
+                        <div class="d-flex flex-column mb-3 align-items-center">
+                            {!! $checkOutQr !!}
+                            <a href="{{$checkout_code}}" class="button button-small button-success mt-3">Check-out</a>
+                        </div>
                         <center>
                             <h2>Check Out</h2>
                         </center>

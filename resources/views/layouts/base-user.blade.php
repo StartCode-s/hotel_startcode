@@ -46,18 +46,18 @@
                 <div class="sidebar-menu">
                     <p class="text-menu">User Menu</p>
                     <a href="/" class="sidebar-link">
-                        <img src="{{ url('assets-user/images/icon/booking.png') }}" alt="">
+                        <img src="{{ url('assets-user/images/icon/shopping-cart.png') }}" alt="">
                         Booking Room
                     </a>
                     <a href="/transaction" class="sidebar-link">
-                        <img src="{{ url('assets-user/images/icon/calendar.png') }}" alt="">
+                        <img src="{{ url('assets-user/images/icon/history-icon.png') }}" alt="">
                         History
                     </a>
-                    {{-- <p class="text-menu">Hotel Menu</p>
-                    <a href="#" class="sidebar-link">
-                        <img src="{{ url('assets-user/images/icon/buildings.png') }}" alt="">
-                        Fasilitas Hotel
-                    </a> --}}
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <a class="sidebar-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        this.closest('form').submit();"> <img src="{{ url('assets-user/images/icon/logout-icon.png') }}" alt="">Logout</a>
+                    </form>
                 </div>
             </div>
         </div>
