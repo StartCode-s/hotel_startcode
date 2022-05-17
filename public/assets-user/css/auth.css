@@ -1,42 +1,42 @@
 #auth {
-  min-height: 100vh;
-  width: 100%;
-  background: url(/dist/assets/images/background.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+    min-height: 100vh;
+    width: 100%;
+    background: url(../images/home-background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
-#auth .auth-wrapper {
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
+  #auth .auth-wrapper {
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 
-#auth .auth-wrapper .card {
-  max-width: 500px;
-}
+  #auth .auth-wrapper .card {
+    max-width: 500px;
+  }
 
-#auth .auth-wrapper .card .header-card {
-  text-align: center;
-  margin-bottom: 1.7rem;
-}
+  #auth .auth-wrapper .card .header-card {
+    text-align: center;
+    margin-bottom: 1.7rem;
+  }
 
-#auth .auth-wrapper .card .header-card h3 {
-  color: #001845;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+  #auth .auth-wrapper .card .header-card h3 {
+    color: #001845;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
 
-#auth .auth-wrapper .card .header-card p {
-  color: #AAABB1;
-  font-size: 12px;
-}
-/*# sourceMappingURL=auth.css.map */
+  #auth .auth-wrapper .card .header-card p {
+    color: #AAABB1;
+    font-size: 12px;
+  }
+  /*# sourceMappingURL=auth.css.map */

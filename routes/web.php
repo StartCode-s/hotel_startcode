@@ -86,14 +86,14 @@ Route::middleware(['auth','checkRole:0'])->group(function () {
 });
 
 
-    Route::prefix('reception')->group(function () {
-        Route::middleware(['checkRole:1','auth'])->group(function () {
-            Route::get('/', 'ReceptionController@index')->name('reception.index');
-            Route::get('/search', 'ReceptionController@search')->name('reception.search');
-        });
-
-        Route::get('/checkIn/{code}', 'ReceptionController@checkIn')->name('reception.checkIn');
-        Route::get('/checkOut/{code}', 'ReceptionController@checkOut')->name('reception.checkOut');
+Route::prefix('reception')->group(function () {
+    Route::middleware(['checkRole:1','auth'])->group(function () {
+        Route::get('/', 'ReceptionController@index')->name('reception.index');
+        Route::get('/search', 'ReceptionController@search')->name('reception.search');
     });
+
+    Route::get('/checkIn/{code}', 'ReceptionController@checkIn')->name('reception.checkIn');
+    Route::get('/checkOut/{code}', 'ReceptionController@checkOut')->name('reception.checkOut');
+});
 
 
