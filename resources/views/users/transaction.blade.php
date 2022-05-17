@@ -22,8 +22,8 @@
                             <th>Guest Name</th>
                             <th>Date Transaction</th>
                             <th>Status</th>
-                            <th>Action</th>
                             <th>Invoice</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,9 +64,9 @@
                                     <td>
                                         @if (is_null($item->transaction_id))
                                             <a href="{{ route('pay', ['code' => $item->order_code]) }}" type="submit"
-                                                class="button button-small button-success"> Pay</a>
+                                                class="button button-small button-success w-100 d-block text-center"> Pay</a>
                                         @else
-                                            <a class="button button-small button-primary"
+                                            <a class="button button-small button-primary w-100 d-block text-center"
                                                 href="{{ route('transaction-invoice', ['code' => $item->order_code]) }}">Invoice</a>
                                         @endif
                                     </td>
@@ -77,11 +77,9 @@
                                         <a href="{{ route('cancel-order', ['code' => $item->id]) }}"
                                             class="button button-danger button-small">Cancel</a>
                                     </td>
-
                                     @else
-                                        <td></td>
-                                        <td></td>
                                 @endif
+                                    <td></td>
                             </tr>
                         @endforeach
 

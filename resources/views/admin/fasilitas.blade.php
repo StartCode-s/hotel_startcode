@@ -19,7 +19,7 @@
             <a href="/admin/kamar" class="sidebar-menu">Kamar</a>
         </li>
 
-        <li class="list-menu ">
+        <li class="list-menu active">
             <div class="icon">
                 <ion-icon name="grid"></ion-icon>
             </div>
