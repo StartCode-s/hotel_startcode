@@ -32,14 +32,14 @@ class ReceptionController extends Controller
         $order = Order::where('order_code',$code)->first();
         $order->is_check_in = TRUE;
         $order->save();
-        dd('Sukses Check In');
+        return redirect()->back();
     }
     public function checkOut(Request $request,$code)
     {
         $order = Order::where('order_code',$code)->first();
         $order->is_check_out = TRUE;
         $order->save();
-        dd('Sukses Check Out');
+        return redirect()->back();
     }
 
 }

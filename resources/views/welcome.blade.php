@@ -46,8 +46,9 @@
                                     <div class="col-6">
                                         <div class="form-input">
                                             <label for="checkin" class="form-label">Check-in</label>
-                                            <input type="date" name="check_in" id="checkin" min="{{ date('Y-m-d') }}"
-                                                class="form-control" onchange="updatedate();" required>
+                                            <input type="date" name="check_in" id="checkin"
+                                                min="{{ date('Y-m-d') }}" class="form-control"
+                                                onchange="updatedate();" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -110,7 +111,19 @@
                                     </div>
                                 </div>
                             </form>
-
+                            <div class="sign-account mt-4">
+                                @if (Auth::check())
+                                    <div class="d-flex justify-content-center">
+                                        @if (Auth::user()->role == 0)
+                                            <a href="{{ route('transaction') }}">History Transaction</a>
+                                        @elseif(Auth::user()->role == 1)
+                                            <a href="{{ route('reception.index') }}">Dashboard</a>
+                                        @elseif(Auth::user(0)->role == 2)
+                                            <a href="{{ route('admin.index') }}">Dashboard</a>
+                                        @endif
+                                    </div>
+                                @endif
+                            </div>
                             @if (!Auth::check())
                                 <div class="sign-account mt-4">
                                     <p>You have to login or register first !</p>

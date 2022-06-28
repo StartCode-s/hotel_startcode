@@ -28,7 +28,7 @@ require __DIR__.'/auth.php';
 Route::prefix('admin')->middleware(['auth','checkRole:2'])->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
-    });
+    })->name('index');
 
     Route::prefix('kamar')->name('kamar.')->group(function () {
         Route::get('/', 'KamarController@index')->name('index');
